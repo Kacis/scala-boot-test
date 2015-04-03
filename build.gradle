@@ -1,0 +1,41 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath('org.springframework.boot:spring-boot-gradle-plugin:1.2.3.RELEASE')
+        classpath('org.springframework:springloaded:1.2.1.RELEASE')
+    }
+}
+
+apply plugin: 'idea'
+apply plugin: 'scala'
+apply plugin: 'spring-boot'
+
+idea {
+    module {
+        inheritOutputDirs = false
+        outputDir = file("$buildDir/classes/main/")
+    }
+}
+
+jar {
+    baseName = 'scala-spring-boot'
+    version = '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.scala-lang:scala-library:2.11.6',
+            'org.springframework.boot:spring-boot-starter-jetty',
+            'org.springframework.boot:spring-boot-starter-actuator',
+            'org.clapper:grizzled-slf4j_2.10:1.0.2'
+    compile("org.springframework.boot:spring-boot-starter-web") {
+        exclude module: "spring-boot-starter-tomcat"
+    }
+    testCompile 'org.springframework.boot:spring-boot-starter-test',
+            'junit:junit'
+}
