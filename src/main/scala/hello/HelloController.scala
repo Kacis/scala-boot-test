@@ -12,7 +12,7 @@ class HelloController extends Logging {
   @RequestMapping(Array("/hello"))
   def hello(): Message = {
     debug("Hello method called")
-    new Message(InetAddress.getLocalHost.getHostName, new Date)
+    Message(InetAddress.getLocalHost.getHostName, new Date)
   }
 
 }
