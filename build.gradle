@@ -6,25 +6,44 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath('org.springframework.boot:spring-boot-gradle-plugin:1.2.3.RELEASE')
-        classpath('org.springframework:springloaded:1.2.3.RELEASE')
+        classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.2.3.RELEASE'
+        classpath 'org.springframework:springloaded:1.2.3.RELEASE'
+        classpath 'se.transmode.gradle:gradle-docker:1.2'
     }
 }
 
 apply plugin: 'idea'
 apply plugin: 'scala'
 apply plugin: 'spring-boot'
+apply plugin: 'docker'
+
+group = 'sirile'
+
+jar {
+    baseName = 'scala-spring-boot'
+    version = '0.1.0'
+}
+
+def jarName = jar.baseName + '-' + jar.version + '.jar'
+
+
+docker {
+    baseImage = "sirile/minijavabox"
+    maintainer = 'Ilkka Anttonen "ilkka.anttonen@gmail.com"'
+}
+
+task bootDocker(type: Docker, dependsOn: 'build') {
+    applicationName = "scala-boot-test"
+    exposePort 80
+    addFile 'build/libs/' + jarName, jarName
+    defaultCommand = ['java', '-jar', jarName]
+}
 
 idea {
     module {
         inheritOutputDirs = false
         outputDir = file("$buildDir/classes/main/")
     }
-}
-
-jar {
-    baseName = 'scala-spring-boot'
-    version = '0.1.0'
 }
 
 repositories {
