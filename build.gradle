@@ -32,11 +32,11 @@ docker {
     maintainer = 'Ilkka Anttonen "ilkka.anttonen@gmail.com"'
 }
 
-task bootDocker(type: Docker, dependsOn: 'build') {
+task container(type: Docker, dependsOn: 'build') {
     applicationName = "scala-boot-test"
     exposePort 80
     addFile 'build/libs/' + jarName, jarName
-    defaultCommand = ['java', '-jar', jarName]
+    defaultCommand = ['java', '-Dserver.port=80', '-jar', jarName]
 }
 
 idea {

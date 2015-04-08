@@ -1,5 +1,8 @@
 package hello
 
+import java.net.InetAddress
+import java.util.Date
+
 import grizzled.slf4j.Logging
 import org.springframework.web.bind.annotation.{RequestMapping, RestController}
 
@@ -7,9 +10,9 @@ import org.springframework.web.bind.annotation.{RequestMapping, RestController}
 class HelloController extends Logging {
 
   @RequestMapping(Array("/hello"))
-  def hello():String = {
+  def hello(): Message = {
     debug("Hello method called")
-    "Hello world!"
+    new Message(InetAddress.getLocalHost.getHostName, new Date)
   }
 
 }
