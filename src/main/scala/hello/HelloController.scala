@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.{RequestMapping, RestController}
 @RestController
 class HelloController extends Logging {
 
-  @RequestMapping(Array("/hello"))
-  def hello(): Message = {
+  @RequestMapping(Array("/"))
+  def index(): Message = {
     debug("Hello method called")
     Message(InetAddress.getLocalHost.getHostName, new Date)
   }
