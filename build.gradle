@@ -28,7 +28,7 @@ def jarName = jar.baseName + '-' + jar.version + '.jar'
 
 
 docker {
-    baseImage = "sirile/minijavabox"
+    baseImage = "frolvlad/alpine-oraclejdk8"
     maintainer = 'Ilkka Anttonen "ilkka.anttonen@gmail.com"'
 }
 
