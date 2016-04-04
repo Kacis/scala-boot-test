@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.{RequestMapping, RestController}
 class HelloController extends Logging {
 
   @RequestMapping(Array("/"))
-  def index(): Message = {
+  def hello(): Message = {
     debug("Hello method called")
     Message(InetAddress.getLocalHost.getHostName, new Date)
   }
