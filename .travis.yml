@@ -9,7 +9,7 @@ before_script:
 - docker images
 
 script:
-- ./gradlew build
+- ./gradlew container
 
 after_success:
 - docker images
