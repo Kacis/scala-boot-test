@@ -5,5 +5,11 @@ language: scala
 services:
   - docker
 
+before_script:
+- docker images
+
 script:
 - ./gradlew build
+
+after_success:
+- docker images
