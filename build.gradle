@@ -17,7 +17,7 @@ apply plugin: 'scala'
 apply plugin: 'spring-boot'
 apply plugin: 'docker'
 
-group = 'sirile'
+group = 'kacis'
 
 jar {
     baseName = 'scala-spring-boot'
@@ -28,7 +28,7 @@ def jarName = jar.baseName + '-' + jar.version + '.jar'
 
 
 docker {
-    baseImage = "frolvlad/alpine-oraclejdk8"
+    baseImage = "kacis/docker-rpi-alpine-java"
     maintainer = 'Ilkka Anttonen "ilkka.anttonen@gmail.com"'
 }
 
